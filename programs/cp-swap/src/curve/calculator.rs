@@ -221,8 +221,7 @@ pub mod test {
             source_token_amount,
             swap_source_amount,
             swap_destination_amount,
-        )
-        .unwrap();
+        );
 
         let (swap_token_0_amount, swap_token_1_amount) = match trade_direction {
             TradeDirection::ZeroForOne => (swap_source_amount, swap_destination_amount),
@@ -232,12 +231,8 @@ pub mod test {
             .checked_mul(swap_token_1_amount)
             .unwrap();
 
-        let new_swap_source_amount = swap_source_amount
-            .checked_add(results.source_amount_swapped)
-            .unwrap();
-        let new_swap_destination_amount = swap_destination_amount
-            .checked_sub(results.destination_amount_swapped)
-            .unwrap();
+        let new_swap_source_amount = swap_source_amount.checked_add(results).unwrap();
+        let new_swap_destination_amount = swap_destination_amount.checked_sub(results).unwrap();
         let (swap_token_0_amount, swap_token_1_amount) = match trade_direction {
             TradeDirection::ZeroForOne => (new_swap_source_amount, new_swap_destination_amount),
             TradeDirection::OneForZero => (new_swap_destination_amount, new_swap_source_amount),

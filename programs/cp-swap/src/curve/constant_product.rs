@@ -165,15 +165,10 @@ mod tests {
             source_amount,
             swap_source_amount,
             swap_destination_amount,
-        )
-        .unwrap();
-        assert_eq!(result.source_amount_swapped, expected_source_amount_swapped);
-        assert_eq!(
-            result.destination_amount_swapped,
-            expected_destination_amount_swapped
         );
-        let new_invariant = (swap_source_amount + result.source_amount_swapped)
-            * (swap_destination_amount - result.destination_amount_swapped);
+        assert_eq!(result, expected_source_amount_swapped);
+        assert_eq!(result, expected_destination_amount_swapped);
+        let new_invariant = (swap_source_amount + result) * (swap_destination_amount - result);
         assert!(new_invariant >= invariant);
     }
 
