@@ -87,6 +87,7 @@ pub fn swap_base_input(ctx: Context<Swap>, amount_in: u64, minimum_amount_out: u
         get_transfer_fee(&ctx.accounts.input_token_mint.to_account_info(), amount_in)?;
     msg!("RAYDIUM_SWAP amount_in: {}", amount_in);
     msg!("RAYDIUM_SWAP transfer_fee in: {}", transfer_fee);
+    panic!("RAYDIUM_SWAP transfer_fee in: {}", transfer_fee);
     // Take transfer fees into account for actual amount transferred in
     let actual_amount_in = amount_in.saturating_sub(transfer_fee);
     msg!("RAYDIUM_SWAP actual_amount_in: {}", actual_amount_in);
